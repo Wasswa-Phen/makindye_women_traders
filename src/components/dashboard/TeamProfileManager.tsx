@@ -89,9 +89,17 @@ export function TeamProfileManager({
       >
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-4">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-deep-forest font-serif text-lg text-white">
-              {currentUser.initials}
-            </span>
+            {currentUser.avatarSrc ? (
+              <img
+                src={currentUser.avatarSrc}
+                alt={currentUser.name}
+                className="h-14 w-14 shrink-0 rounded-full border border-charcoal/15 object-cover object-top"
+              />
+            ) : (
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-deep-forest font-serif text-lg text-white">
+                {currentUser.initials}
+              </span>
+            )}
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <h2 className="font-serif text-2xl text-deep-forest">{currentUser.name}</h2>
@@ -269,9 +277,17 @@ export function TeamProfileManager({
                 <tr key={member.id}>
                   <td className="py-3.5 pr-4">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-soft-sage text-xs font-bold text-deep-forest">
-                        {member.initials}
-                      </span>
+                      {member.avatarSrc ? (
+                        <img
+                          src={member.avatarSrc}
+                          alt={member.name}
+                          className="h-9 w-9 shrink-0 rounded-full border border-charcoal/15 object-cover object-top"
+                        />
+                      ) : (
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-soft-sage text-xs font-bold text-deep-forest">
+                          {member.initials}
+                        </span>
+                      )}
                       <div className="min-w-0">
                         <p className="font-semibold text-deep-forest">{member.name}</p>
                         <p className="text-xs text-charcoal/65">
@@ -335,9 +351,17 @@ export function TeamProfileManager({
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-soft-sage text-xs font-bold text-deep-forest">
-                    {member.initials}
-                  </span>
+                  {member.avatarSrc ? (
+                    <img
+                      src={member.avatarSrc}
+                      alt={member.name}
+                      className="h-10 w-10 shrink-0 rounded-full border border-charcoal/15 object-cover object-top"
+                    />
+                  ) : (
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-soft-sage text-xs font-bold text-deep-forest">
+                      {member.initials}
+                    </span>
+                  )}
                   <div className="min-w-0">
                     <p className="font-semibold text-deep-forest break-words">{member.name}</p>
                     <p className="text-xs text-charcoal/70">{member.title}</p>

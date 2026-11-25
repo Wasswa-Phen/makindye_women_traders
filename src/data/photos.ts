@@ -19,7 +19,7 @@ export const photos: Record<
   | "girlsMentorship"
   | "newsTrees"
   | "newsOutreach"
-  | "founderPlaceholder",
+  | "founder",
   PhotoAsset
 > = {
   hero: {
@@ -92,11 +92,10 @@ export const photos: Record<
       "Wikimedia Commons (Public Domain) — USAID Uganda community education session by Helen Manson",
     approvalStatus: "illustrative-remote",
   },
-  founderPlaceholder: {
-    src: "/images/leadership/founder-placeholder.svg",
-    fallbackSrc: "/images/leadership/founder-placeholder.svg",
-    sourceNote:
-      "Neutral founder placeholder awaiting client permission for approved portrait of Namusoke Fatina",
-    approvalStatus: "neutral-placeholder",
+  founder: {
+    src: "/images/leadership/fatina.jpg",
+    fallbackSrc: "/images/leadership/fatina.jpg",
+    sourceNote: "Leadership portrait supplied in public/images/leadership/fatina.jpg",
+    approvalStatus: "approved-local-concept",
   },
 };

@@ -90,9 +90,9 @@ export const founderProfile: FounderProfile = {
     "Namusoke Fatina founded Makindye Women Traders in Kampala with a clear conviction: lasting environmental action begins when women and girls are trusted to lead.",
   biographySecondary:
     "Her community work connects practical environmental care with mentorship and livelihood pathways for women and young mothers across Makindye Division.",
-  photo: photos.founderPlaceholder,
+  photo: photos.founder,
   imageAlt:
-    "Neutral portrait placeholder for Founder and CEO Namusoke Fatina pending approved client photograph",
+    "Portrait of Namusoke Fatina, Founder & Chief Executive Officer of Makindye Women Traders",
   imageLabel: "",
 };
 

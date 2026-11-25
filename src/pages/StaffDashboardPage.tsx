@@ -331,9 +331,17 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
               aria-label={`Profile: ${currentUser.name} (${currentUser.role})`}
               className="flex min-h-11 items-center gap-2.5 rounded-full border border-charcoal/10 bg-ivory/80 py-1 pl-1 pr-1 lg:pr-3 hover:bg-soft-sage/60"
             >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-deep-forest text-xs font-bold text-white">
-                {currentUser.initials}
-              </span>
+              {currentUser.avatarSrc ? (
+                <img
+                  src={currentUser.avatarSrc}
+                  alt={currentUser.name}
+                  className="h-8 w-8 shrink-0 rounded-full object-cover object-top"
+                />
+              ) : (
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-deep-forest text-xs font-bold text-white">
+                  {currentUser.initials}
+                </span>
+              )}
               <span className="hidden text-left lg:block">
                 <strong className="block text-xs leading-tight text-deep-forest">
                   {currentUser.name}

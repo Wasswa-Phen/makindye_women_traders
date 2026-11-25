@@ -150,6 +150,7 @@ export interface TeamMember {
   id: string;
   name: string;
   initials: string;
+  avatarSrc?: string;
   title: string;
   email: string;
   role: StaffRole;

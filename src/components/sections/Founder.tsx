@@ -9,7 +9,7 @@ export function Founder() {
         <div className="lg:order-2">
           <SafeImage
             asset={founderProfile.photo}
-            className="h-[420px] w-full object-cover object-center sm:h-[500px] lg:h-[580px]"
+            className="h-[440px] w-full object-cover object-top sm:h-[520px] lg:h-[600px]"
             alt={founderProfile.imageAlt}
             loading="lazy"
           />
