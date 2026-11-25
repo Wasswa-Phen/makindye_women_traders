@@ -1,10 +1,12 @@
 {
+  "title": "Makindye Women Traders | Women Leading a Greener Tomorrow",
   "description": "Showcases Makindye Women Traders’ recycling, conservation and women’s empowerment work, connecting supporters and development partners with community-led change in Kampala.",
+  "language": "en",
   "robots": {
     "index": false
   },
   "accessibility": {
-    "addBypassLinks": false,
+    "addBypassLinks": true,
     "ignoreReducedMotion": false
   }
 }

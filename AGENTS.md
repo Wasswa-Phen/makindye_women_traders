@@ -1,37 +1,88 @@
-# figma-make-app
+# AGENTS.md — Permanent Engineering & Architecture Instructions
 
-React + Vite + Tailwind CSS project running inside Figma Make.
+## Project Identity
+
+- **Project**: Makindye Women Traders (`makindye-women-traders`)
+- **Production Domain**: `makindyewomentraders.org`
+- **Repository**: `https://github.com/Wasswa-Phen/makindye_women_traders`
+- **Developer**: Wasswa Makubuya Stephen (`https://www.wasswastephen.online/`)
+- **Stack**: React 19, TypeScript 5.7+, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`), `pnpm`
+
+---
 
 ## Development Server
 
-A Vite development server is **already running** on `$PORT` (default 8443). You don't need to start it manually.
+- A Vite development server runs on `$PORT` (default `8443`).
+- Hot Module Replacement (HMR) reflects changes to `src/` immediately.
+- Do not delete `.figma/make/site.json` or `.figma/make/*` scripts; `vite.config.ts` imports `./.figma/make/site.json` to configure the HTML shell (`<!-- figma:lang -->`, `<!-- figma:title -->`, meta description, favicon, and bypass links).
 
-- Preview URL: The user can access the running app through the preview panel
-- Hot reload: Changes to source files are reflected immediately
+---
 
-## Project Structure
+## Project Architecture
 
-This is the canonical project structure. Start with task-relevant files below. Only follow imports or inspect other files when required, when a documented path is missing, or when the repository contradicts this guide.
+Maintain the modular directory layout below. Do not collapse components back into a single file or introduce empty directories:
 
-- `src/main.tsx` - React entrypoint; imports `src/index.css` and mounts `src/App.tsx` into the `#root` element
-- `src/App.tsx` - Primary application component and the usual starting point for UI work
-- `src/index.css` - Global CSS entrypoint and Tailwind CSS v4 import
-- `index.html` - Vite HTML shell containing the `#root` element and loading `src/main.tsx`
-- `package.json` - Project dependencies and the Vite build, development, preview, and formatting scripts
-- `vite.config.ts` - Vite configuration with React, Tailwind CSS v4, and Figma Make plugins plus the `@` alias for `src`
-- `.mise.toml` - Toolchain versions for Node.js and pnpm
+- `src/main.tsx` — React DOM entrypoint; imports `src/index.css` and mounts `src/App.tsx`.
+- `src/index.css` — Global CSS entrypoint; imports `src/styles/global.css`.
+- `src/styles/global.css` — Google Fonts (`DM Sans`, `DM Serif Display`), Tailwind CSS v4 `@import 'tailwindcss'`, `@theme` color/font tokens, `@layer base`, `@layer components`, and section layout rules.
+- `src/App.tsx` — Top-level view switcher between `HomePage` and `StaffDashboardPage` (via `useStaffPortalView`).
+- `src/pages/` — Page-level compositions (`HomePage.tsx`, `StaffDashboardPage.tsx`).
+- `src/components/layout/` — Global layout chrome (`Header.tsx`, `Footer.tsx`).
+- `src/components/sections/` — Individual homepage sections (`Hero.tsx`, `AboutPreview.tsx`, `FlagshipInitiative.tsx`, `Programmes.tsx`, `Impact.tsx`, `GalleryPreview.tsx`, `Founder.tsx`, `LatestNews.tsx`, `Collaborators.tsx`, `Partnership.tsx`).
+- `src/components/ui/` — Shared UI primitives (`Arrow.tsx`, `LeafMark.tsx`, `SectionIntro.tsx`).
+- `src/data/` — Centralised typed data files (`organisation.ts`, `programmes.ts`, `gallery.ts`, `news.ts`, `photos.ts`).
+- `src/types/` — Shared TypeScript interfaces (`content.ts`).
+- `src/hooks/` — Custom React hooks (`useEscapeKey.ts`, `useStaffPortalView.ts`).
+- `src/utils/` — Pure helper utilities (`format.ts`).
+- `public/images/` — Categorised static image folders (`hero/`, `about/`, `programmes/`, `gallery/`, `leadership/`, `news/`, `icons/`).
+- `docs/` — Project documentation (`PROJECT_OVERVIEW.md`, `ARCHITECTURE.md`, `CONTENT_GUIDELINES.md`, `DEVELOPMENT_ROADMAP.md`, `DEPLOYMENT.md`).
 
-## Dependencies
+---
 
-- Runtime: React 19 and React DOM 19
-- Styling: Tailwind CSS v4 with the `@tailwindcss/vite` plugin
-- Build tooling: Vite 8, TypeScript 5.7, and `@vitejs/plugin-react`
-- Formatting: oxfmt
+## Design Preservation & Styling Standards
 
-## Styling
+The current visual design is the **approved working design direction** and must be preserved:
 
-This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin configured in `vite.config.ts`. `src/index.css` imports Tailwind with `@import 'tailwindcss';`. Use Tailwind utility classes directly in JSX and put global CSS or Tailwind v4 theme customization in `src/index.css`. This scaffold does not need a Tailwind config file or PostCSS config.
+1. **Color Palette (`@theme` in `src/styles/global.css`)**:
+   - Deep Forest: `#173f35` (`--color-deep-forest` / `--color-forest`)
+   - Botanical Green: `#4a7c59` (`--color-botanical`)
+   - Soft Sage: `#dce7db` (`--color-soft-sage`)
+   - Warm Ivory: `#f8f6f0` (`--color-ivory`)
+   - Earth Gold: `#c5a46d` (`--color-earth-gold`)
+   - Charcoal: `#202b27` (`--color-charcoal`)
+2. **Typography**:
+   - Headings & Editorial Accents: `'DM Serif Display', serif`
+   - Body & UI Controls: `'DM Sans', sans-serif`
+3. **Tailwind CSS v4 Cascade Discipline**:
+   - Keep `@import` statements first in `src/styles/global.css`.
+   - Keep global element defaults inside `@layer base { ... }` so Tailwind utility classes can override them cleanly.
+   - Maintain a single consistent styling system; do not install competing CSS libraries (e.g. Styled Components, Emotion, Bootstrap, Material UI).
 
-`src/main.tsx` imports `src/index.css`, so global font wiring belongs in `src/index.css`. Keep CSS `@import` statements first, then add any `@font-face` rules and font-family defaults there.
+---
 
-Tailwind emits utility classes in `@layer utilities`, and CSS outside any cascade layer overrides every layer regardless of specificity. Put global element styles, such as resets and defaults for `body`, headings, `button`, or `input`, inside `@layer base { ... }` so utility classes on those elements still apply. Tailwind's Preflight already applies `box-sizing: border-box`, removes default margins, and sets `font: inherit` on form controls, so do not repeat those rules.
+## Coding Standards & Content Integrity
+
+1. **TypeScript**:
+   - Maintain strict typing (`"strict": true` in `tsconfig.json`). Avoid `any`.
+   - Use the `@/` path alias for imports across `src/` directories.
+   - Define shared data shapes in `src/types/content.ts` and keep content arrays/objects in `src/data/`.
+2. **Content Honesty**:
+   - Never invent or inflate impact statistics for Makindye Women Traders.
+   - Frame the women-led recycling programme accurately as an emerging flagship initiative until instructed otherwise by the client.
+   - Never claim that simulated prototype features (the contact form submission state or the `#staff` portal concept) are connected to production authentication or a database unless a real backend has been implemented.
+3. **Package Management**:
+   - Use `pnpm` exclusively. Preserve `pnpm-lock.yaml`. Never introduce `package-lock.json` or `yarn.lock`.
+
+---
+
+## Accessibility, Security & Verification
+
+1. **Accessibility**:
+   - Every interactive modal or drawer (`Header` mobile menu, `GalleryPreview` lightbox, `LatestNews` reader modal) must support closing via the `Escape` key (`useEscapeKey`) and provide appropriate ARIA attributes (`role="dialog"`, `aria-modal="true"`, `aria-label`).
+   - All images must have accurate `alt` text.
+   - All `<button>` elements must specify an explicit `type` (`"button"` or `"submit"`).
+2. **Security**:
+   - Never commit secrets, API keys, or `.env` files.
+   - Always include `rel="noopener noreferrer"` on external links using `target="_blank"`.
+3. **Verification Before Completion**:
+   - Run `pnpm run typecheck` (`tsc --noEmit`) and `pnpm run build` (`vite build`) after changes to confirm zero TypeScript or bundler regressions.
