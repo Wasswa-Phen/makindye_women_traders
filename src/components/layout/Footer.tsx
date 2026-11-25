@@ -21,11 +21,11 @@ export function Footer({ onDashboard }: FooterProps) {
         <div>
           <p className="footer-title">Explore</p>
           <div className="footer-links">
-            <a href="#about">About us</a>
-            <a href="#work">Our work</a>
-            <a href="#impact">Impact</a>
+            <a href="#about">About Us</a>
+            <a href="#work">Our Work</a>
+            <a href="#impact">Our Impact</a>
             <a href="#gallery">Gallery</a>
-            <a href="#news">Stories</a>
+            <a href="#news">News &amp; Updates</a>
           </div>
         </div>
         <div>
@@ -46,14 +46,14 @@ export function Footer({ onDashboard }: FooterProps) {
           </p>
           <div className="flex items-center gap-6">
             <a href="#contact" className="inline-flex min-h-10 items-center hover:text-white">
-              Privacy &amp; review enquiry
+              Contact Us
             </a>
             <button
               type="button"
               onClick={onDashboard}
               className="inline-flex min-h-10 items-center hover:text-white"
             >
-              Staff portal
+              Staff Portal
             </button>
           </div>
         </div>

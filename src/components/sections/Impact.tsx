@@ -7,7 +7,7 @@ export function Impact() {
       <div className="site-shell">
         <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
           <SectionIntro
-            eyebrow="Reported impact"
+            eyebrow="Our impact"
             title={
               <>
                 Early steps.
@@ -15,7 +15,7 @@ export function Impact() {
                 <em>Lasting intent.</em>
               </>
             }
-            body="We are building carefully, learning from the field and growing through collaboration."
+            body="Building carefully through community collaboration."
           />
           <div className="grid sm:grid-cols-2">
             {impactStats.map((stat) => (
@@ -30,10 +30,9 @@ export function Impact() {
             ))}
           </div>
         </div>
-        <div className="mt-10 flex items-start gap-3 border-t border-deep-forest/20 pt-5 text-xs leading-5 text-deep-forest/80">
-          <span className="mt-1.5 block h-2 w-2 shrink-0 rounded-full bg-earth-gold" />
-          <p>{impactVerificationNote}</p>
-        </div>
+        <p className="mt-10 border-t border-deep-forest/20 pt-5 text-xs leading-5 text-deep-forest/80">
+          {impactVerificationNote}
+        </p>
       </div>
     </section>
   );

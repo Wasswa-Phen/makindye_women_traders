@@ -7,32 +7,27 @@ export const programmes: Programme[] = [
     number: "01",
     title: "Recycling & Waste Management",
     description:
-      "Developing practical community pathways from sorted recyclable plastics to dignified livelihoods.",
+      "Developing community pathways from sorted plastic waste to dignified livelihoods.",
     photo: photos.womenRecycling,
-    imageAlt:
-      "Illustrative concept showing African women in green aprons sorting plastic bottles for recycling",
+    imageAlt: "African women in green aprons sorting plastic bottles for recycling in Kampala",
     imagePosition: "top",
   },
   {
     id: "tree-growing-conservation",
     number: "02",
     title: "Tree Growing & Conservation",
-    description:
-      "Restoring green spaces through community tree planting, long-term care and local collaboration.",
+    description: "Restoring green spaces through community tree planting and ongoing stewardship.",
     photo: photos.treeGrowing,
-    imageAlt:
-      "Illustrative concept showing Ugandan women community members planting a young tree sapling together",
+    imageAlt: "Ugandan women community members planting a young tree sapling together",
     imagePosition: "top",
   },
   {
     id: "womens-empowerment-livelihoods",
     number: "03",
     title: "Women's Empowerment & Livelihoods",
-    description:
-      "Supporting women and young mothers with practical skills, confidence and economic opportunity.",
+    description: "Supporting women and young mothers with practical skills and economic dignity.",
     photo: photos.womenLivelihoods,
-    imageAlt:
-      "Illustrative concept showing African women in a practical sewing and crafts skills workshop",
+    imageAlt: "African women participating in a practical sewing and crafts workshop",
     imagePosition: "top",
   },
   {
@@ -40,10 +35,9 @@ export const programmes: Programme[] = [
     number: "04",
     title: "Mentorship & Girls' Leadership",
     description:
-      "Helping girls and young women build confidence, voice and environmental leadership.",
+      "Building confidence, voice and environmental leadership among girls and young women.",
     photo: photos.girlsMentorship,
-    imageAlt:
-      "Ugandan young women participating in a community leadership and skills training workshop",
+    imageAlt: "Ugandan young women participating in a leadership and skills training workshop",
     imagePosition: "top",
   },
   {
@@ -51,10 +45,9 @@ export const programmes: Programme[] = [
     number: "05",
     title: "School Environmental Clubs",
     description:
-      "Planned school initiatives nurturing lifelong habits of environmental care and climate action.",
+      "Planned school initiatives nurturing lifelong care for nature and climate action.",
     photo: photos.schoolEnvironment,
-    imageAlt:
-      "Illustrative concept showing Ugandan students in school uniforms planting a tree sapling",
+    imageAlt: "Ugandan students in green school uniforms planting a tree sapling",
     imagePosition: "top",
   },
   {
@@ -62,10 +55,9 @@ export const programmes: Programme[] = [
     number: "06",
     title: "Community Outreach",
     description:
-      "Taking practical environmental education and solidarity support directly into communities.",
+      "Bringing environmental learning and solidarity support directly to neighbourhoods.",
     photo: photos.communityOutreach,
-    imageAlt:
-      "Illustrative concept showing women sharing tree seedlings during a community outreach event",
+    imageAlt: "Women sharing tree seedlings during a community outreach activity",
     imagePosition: "top",
   },
 ];
@@ -74,12 +66,12 @@ export const impactStats: ImpactStat[] = [
   {
     value: "200",
     label: "trees planted",
-    note: "In collaboration with Kaazi Tree Grow Project",
+    note: "With Kaazi Tree Grow Project",
   },
   {
     value: "30+",
     label: "volunteers",
-    note: "Supporting community-led work",
+    note: "Supporting community action",
   },
   {
     value: "2024",
@@ -90,4 +82,4 @@ export const impactStats: ImpactStat[] = [
 ];
 
 export const impactVerificationNote =
-  "Client review note: Previously reported achievements (200 trees planted through collaboration, 30+ volunteers and the 2024 Northern Uganda outreach) remain pending client verification prior to public launch. No additional statistics have been invented.";
+  "Reported figures from early initiatives remain pending final client verification.";

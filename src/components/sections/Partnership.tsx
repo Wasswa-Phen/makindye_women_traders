@@ -19,16 +19,16 @@ export function Partnership() {
             <span />
             Work with us
           </p>
-          <h2 className="display mt-6">
+          <h2 className="display mt-5">
             A greener future begins with what we do <em>together.</em>
           </h2>
           <p className="mt-6 max-w-lg text-lg leading-8 text-white/90">
-            Whether you bring expertise, funding, markets or your time, your partnership can help
-            women build cleaner communities and stronger livelihoods.
+            Whether you bring expertise, funding, markets or time, your partnership helps women
+            build cleaner neighbourhoods and stronger livelihoods.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a className="button button-gold" href={`mailto:${contact.email}`}>
-              Partner with us <Arrow />
+              Partner With Us <Arrow />
             </a>
             <a
               className="button button-outline"
@@ -36,20 +36,20 @@ export function Partnership() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Support our work <Arrow />
+              Support Our Work <Arrow />
             </a>
           </div>
         </div>
         <form className="contact-form" onSubmit={handleSubmit}>
           {sent ? (
-            <div className="flex min-h-[360px] flex-col justify-center">
+            <div className="flex min-h-[340px] flex-col justify-center">
               <p className="text-xs font-bold uppercase tracking-widest text-earth-gold">
                 Message prepared
               </p>
               <h3 className="mt-4 font-serif text-4xl">Thank you for reaching out.</h3>
-              <p className="mt-5 leading-7 text-white/90">
-                This prototype does not send data. On the production site, this form will securely
-                deliver your enquiry to the organisation.
+              <p className="mt-4 leading-7 text-white/90">
+                This review prototype does not transmit form entries. On launch, your enquiry will
+                be delivered directly to the organisation.
               </p>
               <button
                 type="button"
@@ -93,11 +93,11 @@ export function Partnership() {
                   placeholder="How would you like to work together?"
                 />
               </label>
-              <button className="button button-gold mt-3" type="submit">
-                Send enquiry <Arrow />
+              <button className="button button-gold mt-2" type="submit">
+                Send Enquiry <Arrow />
               </button>
-              <p className="text-xs leading-5 text-white/85">
-                Prototype form — demonstration only; no personal data is transmitted or stored.
+              <p className="text-xs leading-5 text-white/80">
+                Demonstration form — no personal data is transmitted or stored.
               </p>
             </>
           )}

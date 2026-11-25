@@ -168,24 +168,120 @@
     height: 1px;
     background: white;
   }
-  .mobile-menu {
-    position: absolute;
-    inset: 6rem 0 auto;
+
+  .mobile-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    height: 100dvh;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #173f35;
+    color: #f8f6f0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+  .mobile-drawer[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .mobile-drawer-head {
+    display: flex;
+    height: 6rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 1.25rem;
+    border-bottom: 1px solid rgb(248 246 240 / 0.14);
+  }
+  .mobile-drawer-close {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid rgb(248 246 240 / 0.35);
+    color: #f8f6f0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .mobile-drawer-body {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.5rem;
-    background: #173f35;
-    border-top: 1px solid rgb(255 255 255 / 0.14);
-    box-shadow: 0 24px 48px rgb(10 25 21 / 0.45);
+    gap: 1.75rem;
+    padding: 2rem 1.25rem;
   }
-  .mobile-menu > a:not(.button) {
+  .mobile-drawer-group {
     display: flex;
-    min-height: 2.75rem;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .mobile-drawer-group + .mobile-drawer-group {
+    padding-top: 1.4rem;
+    border-top: 1px solid rgb(248 246 240 / 0.14);
+  }
+  .mobile-drawer-heading {
+    margin-bottom: 0.25rem;
+    color: #c5a46d;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .mobile-drawer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .mobile-drawer-link {
+    display: flex;
+    min-height: 2.85rem;
     align-items: center;
-    font-family: "DM Serif Display", serif;
-    font-size: 1.65rem;
+    justify-content: space-between;
     color: #f8f6f0;
+    font-family: "DM Serif Display", serif;
+    font-size: 1.55rem;
+    line-height: 1.2;
+    transition: color 0.2s ease;
+  }
+  .mobile-drawer-link svg {
+    color: #c5a46d;
+    opacity: 0.75;
+    transition: transform 0.2s ease;
+  }
+  .mobile-drawer-link:hover,
+  .mobile-drawer-link:focus-visible {
+    color: #dce7db;
+  }
+  .mobile-drawer-link:hover svg {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+  .mobile-drawer-foot {
+    flex-shrink: 0;
+    padding: 1.25rem 1.25rem 2rem;
+    border-top: 1px solid rgb(248 246 240 / 0.14);
+    background: rgb(14 42 35 / 0.65);
+  }
+  .mobile-drawer-contact {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.76rem;
+    color: rgb(248 246 240 / 0.78);
+  }
+  .mobile-drawer-contact a {
+    color: #f8f6f0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .hero {
@@ -202,7 +298,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 25%;
+    object-position: center 22%;
   }
   .hero-overlay {
     position: absolute;
@@ -210,34 +306,11 @@
     background:
       linear-gradient(
         90deg,
-        rgb(10 37 30 / 0.92) 0%,
-        rgb(10 37 30 / 0.65) 48%,
-        rgb(10 37 30 / 0.18) 80%
+        rgb(10 37 30 / 0.88) 0%,
+        rgb(10 37 30 / 0.58) 46%,
+        rgb(10 37 30 / 0.12) 80%
       ),
-      linear-gradient(0deg, rgb(10 37 30 / 0.55), transparent 45%);
-  }
-  .photo-note {
-    position: absolute;
-    right: 1rem;
-    bottom: 1rem;
-    z-index: 10;
-    color: rgb(248 246 240 / 0.78);
-    font-size: 0.6rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-  }
-  .image-label {
-    position: absolute;
-    bottom: 0.75rem;
-    left: 0.75rem;
-    z-index: 5;
-    padding: 0.35rem 0.6rem;
-    background: rgb(23 63 53 / 0.9);
-    color: #f8f6f0;
-    font-size: 0.62rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
+      linear-gradient(0deg, rgb(10 37 30 / 0.45), transparent 45%);
   }
   .programme img {
     width: 100%;

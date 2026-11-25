@@ -15,18 +15,14 @@ export function AboutPreview() {
             alt="Smiling Ugandan women standing together in a Kampala community setting"
           />
           <div className="absolute bottom-0 right-0 w-[68%] bg-deep-forest p-6 text-white sm:w-[56%] lg:p-8">
-            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.18em] text-earth-gold">
-              Official theme
-            </p>
             <p className="font-serif text-xl leading-snug sm:text-2xl">
               {organisationInfo.officialTheme}
             </p>
           </div>
-          <span className="image-label">Illustrative concept image</span>
         </div>
         <div className="pt-4 lg:pt-0">
           <SectionIntro
-            eyebrow="Who we are"
+            eyebrow="About us"
             title={
               <>
                 When women lead,
@@ -35,7 +31,7 @@ export function AboutPreview() {
               </>
             }
           />
-          <p className="mt-7 text-lg leading-8 text-charcoal/85">{organisationInfo.aboutLead}</p>
+          <p className="mt-6 text-lg leading-8 text-charcoal/85">{organisationInfo.aboutLead}</p>
           <p className="mt-4 leading-7 text-charcoal/75">{organisationInfo.aboutBody}</p>
           <a className="text-link mt-7 text-deep-forest" href="#founder">
             Meet our founder <Arrow />

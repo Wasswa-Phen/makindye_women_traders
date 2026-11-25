@@ -9,14 +9,45 @@ import type {
 } from "@/types/content";
 import { photos } from "./photos";
 
+export interface MobileNavGroup {
+  heading: string;
+  links: NavItem[];
+}
+
 export const navigationLinks: NavItem[] = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
+  { label: "About Us", href: "#about" },
   { label: "Our Work", href: "#work" },
-  { label: "Impact", href: "#impact" },
+  { label: "Our Impact", href: "#impact" },
   { label: "Gallery", href: "#gallery" },
-  { label: "Stories", href: "#news" },
-  { label: "Contact", href: "#contact" },
+  { label: "News & Updates", href: "#news" },
+  { label: "Contact Us", href: "#contact" },
+];
+
+export const mobileNavigationGroups: MobileNavGroup[] = [
+  {
+    heading: "Explore",
+    links: [
+      { label: "Home", href: "#home" },
+      { label: "About Us", href: "#about" },
+      { label: "Our Work", href: "#work" },
+      { label: "Our Impact", href: "#impact" },
+    ],
+  },
+  {
+    heading: "Discover",
+    links: [
+      { label: "Gallery", href: "#gallery" },
+      { label: "News & Updates", href: "#news" },
+    ],
+  },
+  {
+    heading: "Connect",
+    links: [
+      { label: "Contact Us", href: "#contact" },
+      { label: "Partner With Us", href: "#contact" },
+    ],
+  },
 ];
 
 export const organisationInfo: OrganisationInfo = {
@@ -25,25 +56,24 @@ export const organisationInfo: OrganisationInfo = {
   domain: "makindyewomentraders.org",
   tagline: "Rooted in purpose. Growing change.",
   officialTheme: "“Loving nature through women ensures continuity in transformation.”",
-  heroTitlePrefix: "Women leading a ",
-  heroTitleHighlight: "greener",
-  heroTitleSuffix: " tomorrow.",
-  heroDescription:
-    "A women-led Community Based Organisation turning environmental responsibility into cleaner communities, stronger livelihoods and a more hopeful Kampala.",
+  heroTitlePrefix: "Women Leading a ",
+  heroTitleHighlight: "Greener",
+  heroTitleSuffix: " Tomorrow.",
+  heroDescription: "Empowering women to lead a cleaner, greener and waste-free Kampala.",
   aboutLead:
-    "Makindye Women Traders is a women-led Community Based Organisation in Makindye Division, Kampala, Uganda, advancing environmental conservation, community outreach and sustainable livelihoods.",
+    "Makindye Women Traders is a women-led Community Based Organisation in Makindye Division, Kampala, connecting environmental stewardship with women’s leadership and sustainable livelihoods.",
   aboutBody:
-    "We place women and girls at the centre of practical environmental action—supporting tree stewardship, mentorship, skills training and an emerging women-led recycling initiative.",
+    "Through tree growing, mentorship, skills workshops and community outreach, we equip women and girls to shape healthier neighbourhoods and resilient futures.",
   flagshipTitlePrefix: "Turning waste",
   flagshipTitleHighlight: "possibility.",
   flagshipDescription:
-    "We are developing a women-led plastic and waste management programme designed to create dignified income, reduce neighbourhood waste and make environmental care part of everyday community life.",
-  flagshipCalloutTitle: "Developing programme · Partnership invitation",
+    "We are developing a women-led plastic and waste management programme that transforms household plastics into community income and cleaner streets.",
+  flagshipCalloutTitle: "Developing programme · Partnership opportunity",
   flagshipCalloutBody:
-    "This is an emerging initiative under active development—not a completed achievement. We welcome technical, funding and market partners who can help build a durable local system.",
+    "This flagship initiative is in active development. We welcome technical, funding and market partners to help scale a lasting local system.",
   footerMission: "Empowering women to lead a cleaner, greener and waste-free Kampala.",
   reviewNotice:
-    "Client review concept · Illustrative photography and figures remain subject to final client verification.",
+    "Prototype for client review — illustrative photography and organisational information remain subject to client approval.",
   contact: {
     email: "mwomentraders@gmail.com",
     phoneDisplay: "+256 752 621 075",
@@ -57,13 +87,13 @@ export const founderProfile: FounderProfile = {
   name: "Namusoke Fatina",
   role: "Founder & Chief Executive Officer",
   biographyPrimary:
-    "Namusoke Fatina founded Makindye Women Traders Community Based Organisation in Kampala with a commitment to connecting women’s leadership, community dignity and environmental care.",
+    "Namusoke Fatina founded Makindye Women Traders in Kampala with a clear conviction: lasting environmental action begins when women and girls are trusted to lead.",
   biographySecondary:
-    "Her work places practical responsibility at the centre: supporting girls, young mothers and women through mentorship, livelihood skills and community-led environmental stewardship.",
+    "Her community work connects practical environmental care with mentorship and livelihood pathways for women and young mothers across Makindye Division.",
   photo: photos.founderPlaceholder,
   imageAlt:
-    "Neutral placeholder frame for Founder and CEO Namusoke Fatina pending approved portrait",
-  imageLabel: "Founder placeholder · Approved portrait pending client permission",
+    "Neutral portrait placeholder for Founder and CEO Namusoke Fatina pending approved client photograph",
+  imageLabel: "",
 };
 
 export const collaborators: Collaborator[] = [

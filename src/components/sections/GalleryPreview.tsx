@@ -30,7 +30,7 @@ export function GalleryPreview() {
       <div className="site-shell">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionIntro
-            eyebrow="Community in view"
+            eyebrow="Gallery"
             title={
               <>
                 Real people. Real action.
@@ -64,9 +64,6 @@ export function GalleryPreview() {
             </button>
           ))}
         </div>
-        <p className="mt-4 text-xs uppercase tracking-widest text-charcoal/65">
-          Illustrative concept gallery · Replace with approved field event albums when supplied
-        </p>
       </div>
       {active !== null && (
         <div className="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer">

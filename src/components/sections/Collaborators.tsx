@@ -15,9 +15,6 @@ export function Collaborators() {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-center text-xs text-charcoal/65">
-          Documented collaborations shown; official partner logos can be added when supplied.
-        </p>
       </div>
     </section>
   );

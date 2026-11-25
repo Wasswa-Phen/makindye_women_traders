@@ -7,14 +7,13 @@ export function FlagshipInitiative() {
   return (
     <section className="overflow-hidden bg-deep-forest text-white">
       <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[440px] lg:min-h-[620px]">
+        <div className="relative min-h-[440px] lg:min-h-[600px]">
           <SafeImage
             asset={photos.womenRecycling}
             className="absolute inset-0 h-full w-full object-cover object-top"
             alt="African women in green aprons sorting recyclable plastic bottles in Kampala"
           />
-          <div className="absolute inset-0 bg-deep-forest/15" />
-          <span className="image-label">Illustrative concept image</span>
+          <div className="absolute inset-0 bg-deep-forest/10" />
         </div>
         <div className="flex items-center px-6 py-16 sm:px-12 lg:px-[8vw] lg:py-20">
           <div className="max-w-xl">
@@ -22,7 +21,7 @@ export function FlagshipInitiative() {
               <span />
               Flagship initiative
             </p>
-            <h2 className="display mt-6">
+            <h2 className="display mt-5">
               {organisationInfo.flagshipTitlePrefix}
               <br />
               into <em>{organisationInfo.flagshipTitleHighlight}</em>
@@ -31,13 +30,15 @@ export function FlagshipInitiative() {
               {organisationInfo.flagshipDescription}
             </p>
             <div className="my-8 border-l border-earth-gold pl-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-earth-gold">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-earth-gold">
                 {organisationInfo.flagshipCalloutTitle}
               </p>
-              <p className="mt-3 leading-7 text-white/80">{organisationInfo.flagshipCalloutBody}</p>
+              <p className="mt-2.5 leading-7 text-white/80">
+                {organisationInfo.flagshipCalloutBody}
+              </p>
             </div>
             <a className="button button-gold" href="#contact">
-              Explore partnership <Arrow />
+              Explore Partnership <Arrow />
             </a>
           </div>
         </div>

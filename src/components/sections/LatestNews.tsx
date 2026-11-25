@@ -16,7 +16,7 @@ export function LatestNews() {
     <section id="news" className="bg-deep-forest py-16 text-white lg:py-24">
       <div className="site-shell">
         <SectionIntro
-          eyebrow="Stories & focus areas"
+          eyebrow="News & updates"
           title={
             <>
               From the work.
@@ -50,9 +50,6 @@ export function LatestNews() {
             </article>
           ))}
         </div>
-        <p className="mt-10 text-xs uppercase tracking-widest text-soft-sage/75">
-          Prototype story summaries based on documented initiatives · Imagery illustrative
-        </p>
       </div>
       {article && (
         <div className="article-modal" role="dialog" aria-modal="true" aria-label={article.title}>
@@ -73,9 +70,6 @@ export function LatestNews() {
               {article.title}
             </h3>
             <p className="mt-5 leading-8 text-charcoal/80">{article.excerpt}</p>
-            <p className="mt-4 text-sm italic text-charcoal/65">
-              Client review preview — full verified stories will be published after client sign-off.
-            </p>
           </div>
         </div>
       )}
