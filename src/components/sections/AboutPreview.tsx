@@ -1,4 +1,5 @@
 import { Arrow } from "@/components/ui/Arrow";
+import { Link } from "@/components/ui/Link";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { organisationInfo } from "@/data/organisation";
@@ -22,20 +23,19 @@ export function AboutPreview() {
         </div>
         <div className="pt-4 lg:pt-0">
           <SectionIntro
-            eyebrow="About us"
+            eyebrow="Who we are"
             title={
               <>
-                When women lead,
+                When Women Lead,
                 <br />
-                <em>communities thrive.</em>
+                <em>Communities Thrive.</em>
               </>
             }
           />
-          <p className="mt-6 text-lg leading-8 text-charcoal/85">{organisationInfo.aboutLead}</p>
-          <p className="mt-4 leading-7 text-charcoal/75">{organisationInfo.aboutBody}</p>
-          <a className="text-link mt-7 text-deep-forest" href="#founder">
-            Meet our founder <Arrow />
-          </a>
+          <p className="mt-6 text-lg leading-8 text-charcoal/85">{organisationInfo.aboutPreview}</p>
+          <Link className="text-link mt-7 text-deep-forest" to="/about">
+            Get to Know Us <Arrow />
+          </Link>
         </div>
       </div>
     </section>

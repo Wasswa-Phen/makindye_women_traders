@@ -1,4 +1,5 @@
 import { Arrow } from "@/components/ui/Arrow";
+import { Link } from "@/components/ui/Link";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { organisationInfo } from "@/data/organisation";
 import { photos } from "@/data/photos";
@@ -24,7 +25,7 @@ export function FlagshipInitiative() {
             <h2 className="display mt-5">
               {organisationInfo.flagshipTitlePrefix}
               <br />
-              into <em>{organisationInfo.flagshipTitleHighlight}</em>
+              Into <em>{organisationInfo.flagshipTitleHighlight}</em>
             </h2>
             <p className="mt-6 text-lg leading-8 text-white/85">
               {organisationInfo.flagshipDescription}
@@ -37,9 +38,14 @@ export function FlagshipInitiative() {
                 {organisationInfo.flagshipCalloutBody}
               </p>
             </div>
-            <a className="button button-gold" href="#contact">
-              Explore Partnership <Arrow />
-            </a>
+            <div className="flex flex-wrap items-center gap-6">
+              <Link className="button button-gold" to="/our-work/recycling-waste-management">
+                Explore Plastic to Possibility <Arrow />
+              </Link>
+              <Link className="text-link text-soft-sage" to="/get-involved">
+                Partner With Us <Arrow />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

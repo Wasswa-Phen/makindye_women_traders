@@ -1,6 +1,7 @@
 import { type ChangeEvent, type FormEvent, useState } from "react";
 import { useEscapeKey } from "@/hooks/useEscapeKey";
 import type { CmsPhotoItem, GalleryAlbum } from "@/types/content";
+import { slugify } from "@/utils/format";
 import { CloseIcon, GalleryIcon, PlusIcon, UploadIcon } from "./DashboardIcons";
 
 interface GalleryManagerProps {
@@ -97,10 +98,13 @@ export function GalleryManager({
     }
     const newAlbum: GalleryAlbum = {
       id: `album-${Date.now()}`,
+      slug: slugify(cleanTitle) || `album-${Date.now()}`,
       title: cleanTitle,
+      category: "Community",
       description: albumDesc.trim() || "Community photography album curated for review.",
       status: "Draft",
       coverSrc: photos[0]?.src ?? "/images/hero/makindye-hero.webp",
+      isIllustrative: true,
     };
     onAddAlbum(newAlbum);
     setUploadAlbumId(newAlbum.id);

@@ -144,10 +144,22 @@ makindye_women_traders/
 │   │   └── programmes.ts           # Six core programmes & reported impact figures
 │   ├── hooks/                      # Custom React hooks
 │   │   ├── useEscapeKey.ts         # Keyboard Escape handler for modals & menus
-│   │   └── useStaffPortalView.ts   # Hash-synchronised toggle (#staff) for Staff Portal view
-│   ├── pages/                      # Top-level view compositions
-│   │   ├── HomePage.tsx            # Public website landing page
-│   │   └── StaffDashboardPage.tsx  # Simulated Staff Portal login & workspace view
+│   │   └── useRouter.tsx           # History API router & hash scrolling across all routes
+│   ├── context/
+│   │   └── ContentStoreContext.tsx # Shared demonstration CMS state for public & staff views
+│   ├── pages/                      # Public multi-page views & simulated Staff Portal
+│   │   ├── HomePage.tsx            # Curated organisational preview homepage (/)
+│   │   ├── AboutPage.tsx           # Organisation story, mission, vision & leadership (/about)
+│   │   ├── OurWorkPage.tsx         # Programme directory (/our-work)
+│   │   ├── ProgrammeDetailPage.tsx # Individual programme templates (/our-work/:slug)
+│   │   ├── ImpactPage.tsx          # Documented activities & impact (/impact)
+│   │   ├── GalleryPage.tsx         # Albums & photography grid (/gallery)
+│   │   ├── GalleryAlbumPage.tsx    # Individual gallery album view (/gallery/:slug)
+│   │   ├── NewsPage.tsx            # Featured editorial & story grid (/news)
+│   │   ├── NewsArticlePage.tsx     # Individual article reader (/news/:slug)
+│   │   ├── GetInvolvedPage.tsx     # Partnerships, volunteering & support (/get-involved)
+│   │   ├── ContactPage.tsx         # Direct contact details & demo form (/contact)
+│   │   └── StaffDashboardPage.tsx  # Simulated Staff Portal CMS (/staff, #staff)
 │   ├── styles/
 │   │   └── global.css              # Design tokens (@theme), base rules & component styles
 │   ├── types/

@@ -1,78 +1,53 @@
-import { useCallback, useState } from "react";
 import { Arrow } from "@/components/ui/Arrow";
-import { SafeImage } from "@/components/ui/SafeImage";
+import { Link } from "@/components/ui/Link";
 import { SectionIntro } from "@/components/ui/SectionIntro";
-import { newsArticles } from "@/data/news";
-import { useEscapeKey } from "@/hooks/useEscapeKey";
-import type { NewsArticle } from "@/types/content";
+import { useContentStore } from "@/context/ContentStoreContext";
 
 export function LatestNews() {
-  const [article, setArticle] = useState<NewsArticle | null>(null);
-  const closeArticle = useCallback(() => setArticle(null), []);
-
-  useEscapeKey(closeArticle, article !== null);
+  const { publishedArticles } = useContentStore();
+  const featured = publishedArticles.slice(0, 3);
 
   return (
     <section id="news" className="bg-deep-forest py-16 text-white lg:py-24">
       <div className="site-shell">
-        <SectionIntro
-          eyebrow="News & updates"
-          title={
-            <>
-              From the work.
-              <br />
-              <em>For the future.</em>
-            </>
-          }
-          light
-        />
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <SectionIntro
+            eyebrow="Latest news & updates"
+            title={
+              <>
+                Stories of <em>Change.</em>
+              </>
+            }
+            light
+          />
+          <Link className="text-link self-start text-soft-sage lg:self-auto" to="/news">
+            Read Our Stories <Arrow />
+          </Link>
+        </div>
         <div className="mt-12 grid gap-10 lg:grid-cols-3">
-          {newsArticles.map((item) => (
+          {featured.map((item) => (
             <article className="news-card group" key={item.id}>
-              <div className="overflow-hidden">
-                <SafeImage asset={item.photo} alt={item.imageAlt} loading="lazy" />
-              </div>
-              <div className="mt-5 flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-earth-gold">
-                <span>{item.category}</span>
-                <span>·</span>
-                <span>{item.context}</span>
-              </div>
-              <h3 className="mt-3 font-serif text-2xl leading-snug text-ivory sm:text-3xl">
-                {item.title}
-              </h3>
-              <button
-                type="button"
-                onClick={() => setArticle(item)}
-                className="text-link mt-5 text-soft-sage"
-              >
-                Read summary <Arrow />
-              </button>
+              <Link to={`/news/${item.slug}`} className="block">
+                <div className="overflow-hidden">
+                  <img src={item.imageSrc} alt={item.imageAlt} loading="lazy" />
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-earth-gold">
+                  <span>{item.category}</span>
+                  <span>·</span>
+                  <span>{item.context}</span>
+                </div>
+                <h3 className="mt-3 font-serif text-2xl leading-snug text-ivory sm:text-3xl">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-ivory/78">{item.excerpt}</p>
+                <span className="text-link mt-4 text-soft-sage">
+                  Read Story <Arrow />
+                </span>
+              </Link>
             </article>
           ))}
         </div>
       </div>
-      {article && (
-        <div className="article-modal" role="dialog" aria-modal="true" aria-label={article.title}>
-          <button
-            type="button"
-            onClick={closeArticle}
-            className="lightbox-close bg-ivory/90 text-deep-forest"
-            aria-label="Close article preview"
-          >
-            Close ×
-          </button>
-          <SafeImage asset={article.photo} alt={article.imageAlt} />
-          <div className="p-7 lg:p-10">
-            <p className="text-xs font-bold uppercase tracking-widest text-botanical">
-              {article.category} · {article.context}
-            </p>
-            <h3 className="mt-3 font-serif text-3xl leading-tight text-deep-forest sm:text-4xl">
-              {article.title}
-            </h3>
-            <p className="mt-5 leading-8 text-charcoal/80">{article.excerpt}</p>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

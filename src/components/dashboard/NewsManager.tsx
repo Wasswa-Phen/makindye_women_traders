@@ -2,6 +2,7 @@ import { type ChangeEvent, type FormEvent, useState } from "react";
 import { imagePresetOptions } from "@/data/dashboard";
 import { useEscapeKey } from "@/hooks/useEscapeKey";
 import type { CmsArticle, CmsPublishStatus } from "@/types/content";
+import { slugify } from "@/utils/format";
 import { CloseIcon, NewsIcon, PlusIcon } from "./DashboardIcons";
 
 interface NewsManagerProps {
@@ -29,10 +30,12 @@ export function NewsManager({
     initialCreateOpen
       ? {
           id: "",
+          slug: "",
           title: "",
           category: "Field Notes",
           context: "Makindye Division · Draft",
           excerpt: "",
+          bodyParagraphs: [],
           imageSrc: imagePresetOptions[0].src,
           imageAlt: imagePresetOptions[0].alt,
           status: "Draft",
@@ -54,10 +57,12 @@ export function NewsManager({
     setIsNewMode(true);
     setEditing({
       id: "",
+      slug: "",
       title: "",
       category: "Field Notes",
       context: "Makindye Division · Draft",
       excerpt: "",
+      bodyParagraphs: [],
       imageSrc: imagePresetOptions[0].src,
       imageAlt: imagePresetOptions[0].alt,
       status: "Draft",
@@ -107,8 +112,10 @@ export function NewsManager({
     const saved: CmsArticle = {
       ...editing,
       id: editing.id || `story-${Date.now()}`,
+      slug: editing.slug || slugify(trimmedTitle) || `story-${Date.now()}`,
       title: trimmedTitle,
       excerpt: trimmedExcerpt,
+      bodyParagraphs: editing.bodyParagraphs.length > 0 ? editing.bodyParagraphs : [trimmedExcerpt],
       category: editing.category.trim() || "Updates",
       context: editing.context.trim() || "Makindye, Kampala",
       status: targetStatus,

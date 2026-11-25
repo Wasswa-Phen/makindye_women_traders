@@ -11,11 +11,7 @@ import { LatestNews } from "@/components/sections/LatestNews";
 import { Partnership } from "@/components/sections/Partnership";
 import { Programmes } from "@/components/sections/Programmes";
 
-interface HomePageProps {
-  onOpenDashboard: () => void;
-}
-
-export function HomePage({ onOpenDashboard }: HomePageProps) {
+export function HomePage() {
   return (
     <>
       <Header />
@@ -25,13 +21,13 @@ export function HomePage({ onOpenDashboard }: HomePageProps) {
         <FlagshipInitiative />
         <Programmes />
         <Impact />
-        <GalleryPreview />
         <Founder />
+        <GalleryPreview />
         <LatestNews />
         <Collaborators />
         <Partnership />
       </main>
-      <Footer onDashboard={onOpenDashboard} />
+      <Footer />
     </>
   );
 }

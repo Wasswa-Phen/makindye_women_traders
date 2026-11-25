@@ -151,7 +151,8 @@
     content: "";
     transition: right 0.2s ease;
   }
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
     right: 0;
   }
   .menu-button {

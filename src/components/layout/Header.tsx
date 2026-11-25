@@ -1,13 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Arrow } from "@/components/ui/Arrow";
 import { LeafMark } from "@/components/ui/LeafMark";
+import { Link } from "@/components/ui/Link";
 import { mobileNavigationGroups, navigationLinks, organisationInfo } from "@/data/organisation";
 import { useEscapeKey } from "@/hooks/useEscapeKey";
+import { useRouter } from "@/hooks/useRouter";
 
-export function Header() {
+interface HeaderProps {
+  solid?: boolean;
+}
+
+export function Header({ solid = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { pathname } = useRouter();
   const { contact } = organisationInfo;
 
   const openMenu = useCallback(() => setOpen(true), []);
@@ -29,22 +36,36 @@ export function Header() {
     };
   }, [open]);
 
+  const isRouteActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   return (
-    <header className="absolute inset-x-0 top-0 z-40 border-b border-white/15 text-white">
-      <div className="site-shell flex h-24 items-center justify-between">
-        <a href="#home" aria-label="Makindye Women Traders home">
+    <header
+      className={`${
+        solid ? "sticky top-0 z-40 bg-deep-forest" : "absolute inset-x-0 top-0 z-40"
+      } border-b border-white/15 text-white`}
+    >
+      <div className="site-shell flex h-24 items-center justify-between gap-4">
+        <Link to="/" aria-label="Makindye Women Traders home">
           <LeafMark light />
-        </a>
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
+        </Link>
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
           {navigationLinks.map((link) => (
-            <a key={link.label} href={link.href} className="nav-link">
+            <Link
+              key={link.label}
+              to={link.href}
+              aria-current={isRouteActive(link.href) ? "page" : undefined}
+              className="nav-link whitespace-nowrap"
+            >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
-        <a href="#contact" className="button button-gold hidden lg:inline-flex">
+        <Link to="/get-involved" className="button button-gold hidden shrink-0 lg:inline-flex">
           Partner With Us <Arrow />
-        </a>
+        </Link>
         <button
           ref={toggleRef}
           type="button"
@@ -69,14 +90,14 @@ export function Header() {
         className="mobile-drawer lg:hidden"
       >
         <div className="mobile-drawer-head">
-          <a
-            href="#home"
+          <Link
+            to="/"
             onClick={() => setOpen(false)}
             tabIndex={open ? 0 : -1}
             aria-label="Makindye Women Traders home"
           >
             <LeafMark light />
-          </a>
+          </Link>
           <button
             ref={closeButtonRef}
             type="button"
@@ -96,15 +117,16 @@ export function Header() {
               <ul className="mobile-drawer-list">
                 {group.links.map((item) => (
                   <li key={`${group.heading}-${item.label}`}>
-                    <a
-                      href={item.href}
+                    <Link
+                      to={item.href}
                       onClick={() => setOpen(false)}
                       tabIndex={open ? 0 : -1}
+                      aria-current={isRouteActive(item.href) ? "page" : undefined}
                       className="mobile-drawer-link"
                     >
                       <span>{item.label}</span>
                       <Arrow />
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -113,14 +135,14 @@ export function Header() {
         </nav>
 
         <div className="mobile-drawer-foot">
-          <a
-            href="#contact"
+          <Link
+            to="/get-involved"
             onClick={() => setOpen(false)}
             tabIndex={open ? 0 : -1}
             className="button button-gold w-full"
           >
             Partner With Us <Arrow />
-          </a>
+          </Link>
           <div className="mobile-drawer-contact">
             <a href={`mailto:${contact.email}`} tabIndex={open ? 0 : -1}>
               {contact.email}

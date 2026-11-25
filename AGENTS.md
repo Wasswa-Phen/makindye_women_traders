@@ -25,14 +25,14 @@ Maintain the modular directory layout below. Do not collapse components back int
 - `src/main.tsx` — React DOM entrypoint; imports `src/index.css` and mounts `src/App.tsx`.
 - `src/index.css` — Global CSS entrypoint; imports `src/styles/global.css`.
 - `src/styles/global.css` — Google Fonts (`DM Sans`, `DM Serif Display`), Tailwind CSS v4 `@import 'tailwindcss'`, `@theme` color/font tokens, `@layer base`, `@layer components`, and section layout rules.
-- `src/App.tsx` — Top-level view switcher between `HomePage` and `StaffDashboardPage` (via `useStaffPortalView`).
-- `src/pages/` — Page-level compositions (`HomePage.tsx`, `StaffDashboardPage.tsx`).
+- `src/App.tsx` — Multi-page router (`useRouter`) and shared demonstration `ContentStoreProvider` switching across public routes (`/`, `/about`, `/our-work`, `/our-work/:slug`, `/impact`, `/gallery`, `/gallery/:slug`, `/news`, `/news/:slug`, `/get-involved`, `/contact`) and `StaffDashboardPage` (`/staff` / `#staff`).
+- `src/pages/` — Page-level compositions (`HomePage.tsx`, `AboutPage.tsx`, `OurWorkPage.tsx`, `ProgrammeDetailPage.tsx`, `ImpactPage.tsx`, `GalleryPage.tsx`, `GalleryAlbumPage.tsx`, `NewsPage.tsx`, `NewsArticlePage.tsx`, `GetInvolvedPage.tsx`, `ContactPage.tsx`, `StaffDashboardPage.tsx`).
 - `src/components/layout/` — Global layout chrome (`Header.tsx`, `Footer.tsx`).
 - `src/components/sections/` — Individual homepage sections (`Hero.tsx`, `AboutPreview.tsx`, `FlagshipInitiative.tsx`, `Programmes.tsx`, `Impact.tsx`, `GalleryPreview.tsx`, `Founder.tsx`, `LatestNews.tsx`, `Collaborators.tsx`, `Partnership.tsx`).
 - `src/components/ui/` — Shared UI primitives (`Arrow.tsx`, `LeafMark.tsx`, `SectionIntro.tsx`).
 - `src/data/` — Centralised typed data files (`organisation.ts`, `programmes.ts`, `gallery.ts`, `news.ts`, `photos.ts`).
 - `src/types/` — Shared TypeScript interfaces (`content.ts`).
-- `src/hooks/` — Custom React hooks (`useEscapeKey.ts`, `useStaffPortalView.ts`).
+- `src/hooks/` — Custom React hooks (`useEscapeKey.ts`, `useRouter.tsx`).
 - `src/utils/` — Pure helper utilities (`format.ts`).
 - `public/images/` — Categorised static image folders (`hero/`, `about/`, `programmes/`, `gallery/`, `leadership/`, `news/`, `icons/`).
 - `docs/` — Project documentation (`PROJECT_OVERVIEW.md`, `ARCHITECTURE.md`, `CONTENT_GUIDELINES.md`, `DEVELOPMENT_ROADMAP.md`, `DEPLOYMENT.md`).

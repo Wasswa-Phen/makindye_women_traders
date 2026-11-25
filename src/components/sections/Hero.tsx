@@ -1,4 +1,5 @@
 import { Arrow } from "@/components/ui/Arrow";
+import { Link } from "@/components/ui/Link";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { organisationInfo } from "@/data/organisation";
 import { photos } from "@/data/photos";
@@ -23,12 +24,12 @@ export function Hero() {
             {organisationInfo.heroDescription}
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <a className="button button-gold" href="#work">
+            <Link className="button button-gold" to="/our-work">
               Discover Our Work <Arrow />
-            </a>
-            <a className="button button-outline" href="#contact">
+            </Link>
+            <Link className="button button-outline" to="/get-involved">
               Partner With Us <Arrow />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

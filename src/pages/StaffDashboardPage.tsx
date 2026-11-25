@@ -8,22 +8,8 @@ import { NewsManager } from "@/components/dashboard/NewsManager";
 import { TeamProfileManager } from "@/components/dashboard/TeamProfileManager";
 import { Arrow } from "@/components/ui/Arrow";
 import { LeafMark } from "@/components/ui/LeafMark";
-import {
-  initialActivityLog,
-  initialCmsArticles,
-  initialCmsPhotos,
-  initialGalleryAlbums,
-  initialTeamMembers,
-} from "@/data/dashboard";
-import type {
-  ActivityLogItem,
-  CmsArticle,
-  CmsPhotoItem,
-  DashboardTab,
-  GalleryAlbum,
-  StaffRole,
-  TeamMember,
-} from "@/types/content";
+import { useContentStore } from "@/context/ContentStoreContext";
+import type { CmsArticle, CmsPhotoItem, DashboardTab, GalleryAlbum } from "@/types/content";
 
 interface StaffDashboardPageProps {
   onExit: () => void;
@@ -48,102 +34,37 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [createArticleTrigger, setCreateArticleTrigger] = useState(false);
-
-  const [articles, setArticles] = useState<CmsArticle[]>(initialCmsArticles);
-  const [albums, setAlbums] = useState<GalleryAlbum[]>(initialGalleryAlbums);
-  const [photos, setPhotos] = useState<CmsPhotoItem[]>(initialCmsPhotos);
-  const [members, setMembers] = useState<TeamMember[]>(initialTeamMembers);
-  const [activities, setActivities] = useState<ActivityLogItem[]>(initialActivityLog);
   const [pendingConfirm, setPendingConfirm] = useState<PendingConfirm>(null);
 
-  const currentUser = members[0] ?? initialTeamMembers[0];
-
-  function logDemoActivity(action: string, target: string) {
-    setActivities((prev) => [
-      {
-        id: `act-${Date.now()}`,
-        action,
-        target,
-        actor: currentUser.name,
-        tag: "Demo session",
-      },
-      ...prev,
-    ]);
-  }
-
-  function handleSaveArticle(saved: CmsArticle, isNew: boolean) {
-    setArticles((prev) =>
-      isNew ? [saved, ...prev] : prev.map((a) => (a.id === saved.id ? saved : a)),
-    );
-    logDemoActivity(isNew ? "Created story draft" : `Updated story (${saved.status})`, saved.title);
-  }
-
-  function handleToggleArticleStatus(id: string) {
-    setArticles((prev) =>
-      prev.map((a) => {
-        if (a.id !== id) return a;
-        const nextStatus = a.status === "Published" ? "Draft" : "Published";
-        logDemoActivity(`Marked story ${nextStatus}`, a.title);
-        return { ...a, status: nextStatus };
-      }),
-    );
-  }
-
-  function handleAddAlbum(album: GalleryAlbum) {
-    setAlbums((prev) => [album, ...prev]);
-    logDemoActivity("Created gallery album", album.title);
-  }
-
-  function handleToggleAlbumStatus(albumId: string) {
-    setAlbums((prev) =>
-      prev.map((a) => {
-        if (a.id !== albumId) return a;
-        const nextStatus = a.status === "Published" ? "Draft" : "Published";
-        logDemoActivity(`Marked album ${nextStatus}`, a.title);
-        return { ...a, status: nextStatus };
-      }),
-    );
-  }
-
-  function handleUploadPhotos(newPhotos: CmsPhotoItem[]) {
-    setPhotos((prev) => [...newPhotos, ...prev]);
-    logDemoActivity(
-      `Uploaded ${newPhotos.length} demonstration photo${newPhotos.length > 1 ? "s" : ""}`,
-      newPhotos[0]?.caption ?? "Media library",
-    );
-  }
-
-  function handleUpdatePhoto(updated: CmsPhotoItem) {
-    setPhotos((prev) => prev.map((p) => (p.id === updated.id ? updated : p)));
-    logDemoActivity("Updated photo caption", updated.caption);
-  }
-
-  function handleChangeMemberRole(memberId: string, role: StaffRole) {
-    setMembers((prev) => prev.map((m) => (m.id === memberId ? { ...m, role } : m)));
-  }
-
-  function handleToggleMemberActive(memberId: string) {
-    setMembers((prev) => prev.map((m) => (m.id === memberId ? { ...m, active: !m.active } : m)));
-  }
-
-  function handleAddMember(member: TeamMember) {
-    setMembers((prev) => [...prev, member]);
-    logDemoActivity(`Added team member (${member.role})`, member.name);
-  }
+  const {
+    articles,
+    albums,
+    photos,
+    members,
+    activities,
+    currentUser,
+    saveArticle,
+    toggleArticleStatus,
+    deleteArticle,
+    addAlbum,
+    toggleAlbumStatus,
+    deleteAlbum,
+    uploadPhotos,
+    updatePhoto,
+    deletePhoto,
+    changeMemberRole,
+    toggleMemberActive,
+    addMember,
+  } = useContentStore();
 
   function handleConfirmDelete() {
     if (!pendingConfirm) return;
     if (pendingConfirm.type === "article") {
-      setArticles((prev) => prev.filter((a) => a.id !== pendingConfirm.item.id));
-      logDemoActivity("Removed demo story", pendingConfirm.item.title);
+      deleteArticle(pendingConfirm.item.id);
     } else if (pendingConfirm.type === "album") {
-      const targetId = pendingConfirm.item.id;
-      setAlbums((prev) => prev.filter((a) => a.id !== targetId));
-      setPhotos((prev) => prev.filter((p) => p.albumId !== targetId));
-      logDemoActivity("Removed demo album", pendingConfirm.item.title);
+      deleteAlbum(pendingConfirm.item.id);
     } else if (pendingConfirm.type === "photo") {
-      setPhotos((prev) => prev.filter((p) => p.id !== pendingConfirm.item.id));
-      logDemoActivity("Removed demo photograph", pendingConfirm.item.caption);
+      deletePhoto(pendingConfirm.item.id);
     }
     setPendingConfirm(null);
   }
@@ -227,8 +148,8 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
             </form>
 
             <p className="mt-5 rounded border border-charcoal/10 bg-soft-sage/50 px-3.5 py-2.5 text-xs leading-5 text-deep-forest/85">
-              Client-review prototype only. No real authentication or database storage is connected
-              yet.
+              Client-review prototype only. Changes made here sync across the website during this
+              browser session without a production database.
             </p>
           </div>
 
@@ -247,7 +168,7 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
             </p>
             <p className="text-sm leading-6 text-soft-sage/85">
               Built for community leaders, secretaries and contributors to publish updates and field
-              photography with ease across phone, tablet and desktop.
+              photography across phone, tablet and desktop.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-3 border-t border-white/15 pt-6 text-xs text-soft-sage/85">
@@ -294,7 +215,6 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
       />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Compact Sticky Top Bar */}
         <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center justify-between gap-3 border-b border-charcoal/10 bg-white px-4 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-3">
             <button
@@ -363,7 +283,6 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
           </div>
         </header>
 
-        {/* Main Workspace Container */}
         <main className="mx-auto w-full max-w-[1380px] min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
           {activeTab === "overview" && (
             <DashboardOverview
@@ -383,8 +302,8 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
           {activeTab === "news" && (
             <NewsManager
               articles={articles}
-              onSaveArticle={handleSaveArticle}
-              onToggleStatus={handleToggleArticleStatus}
+              onSaveArticle={saveArticle}
+              onToggleStatus={toggleArticleStatus}
               onRequestDelete={(item) => setPendingConfirm({ type: "article", item })}
               initialCreateOpen={createArticleTrigger}
               onClearCreateTrigger={() => setCreateArticleTrigger(false)}
@@ -395,11 +314,11 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
             <GalleryManager
               albums={albums}
               photos={photos}
-              onAddAlbum={handleAddAlbum}
-              onToggleAlbumStatus={handleToggleAlbumStatus}
+              onAddAlbum={addAlbum}
+              onToggleAlbumStatus={toggleAlbumStatus}
               onRequestDeleteAlbum={(item) => setPendingConfirm({ type: "album", item })}
-              onUploadPhotos={handleUploadPhotos}
-              onUpdatePhoto={handleUpdatePhoto}
+              onUploadPhotos={uploadPhotos}
+              onUpdatePhoto={updatePhoto}
               onRequestDeletePhoto={(item) => setPendingConfirm({ type: "photo", item })}
             />
           )}
@@ -408,9 +327,9 @@ export function StaffDashboardPage({ onExit }: StaffDashboardPageProps) {
             <TeamProfileManager
               currentUser={currentUser}
               members={members}
-              onChangeRole={handleChangeMemberRole}
-              onToggleActive={handleToggleMemberActive}
-              onAddMember={handleAddMember}
+              onChangeRole={changeMemberRole}
+              onToggleActive={toggleMemberActive}
+              onAddMember={addMember}
               onExit={onExit}
               onLogout={() => {
                 setLoggedIn(false);

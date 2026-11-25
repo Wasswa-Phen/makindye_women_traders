@@ -14,3 +14,15 @@ export function getCyclicIndex(currentIndex: number, delta: number, length: numb
   if (length <= 0) return 0;
   return (currentIndex + delta + length) % length;
 }
+
+/**
+ * Converts a title into a clean URL slug.
+ */
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
