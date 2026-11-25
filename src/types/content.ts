@@ -108,3 +108,58 @@ export interface AccessRole {
   role: string;
   holder: string;
 }
+
+export type DashboardTab = "overview" | "news" | "gallery" | "team";
+
+export type StaffRole = "Administrator" | "Editor" | "Contributor";
+
+export type CmsPublishStatus = "Published" | "Draft";
+
+export interface CmsArticle {
+  id: string;
+  title: string;
+  category: string;
+  context: string;
+  excerpt: string;
+  imageSrc: string;
+  imageAlt: string;
+  status: CmsPublishStatus;
+  author: string;
+  updatedNote: string;
+}
+
+export interface GalleryAlbum {
+  id: string;
+  title: string;
+  description: string;
+  status: CmsPublishStatus;
+  coverSrc: string;
+}
+
+export interface CmsPhotoItem {
+  id: string;
+  albumId: string;
+  src: string;
+  filename: string;
+  caption: string;
+  alt: string;
+  status: CmsPublishStatus;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  initials: string;
+  title: string;
+  email: string;
+  role: StaffRole;
+  active: boolean;
+}
+
+export interface ActivityLogItem {
+  id: string;
+  action: string;
+  target: string;
+  actor: string;
+  tag: string;
+}
