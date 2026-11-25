@@ -1,0 +1,10 @@
+{
+  "description": "Showcases Makindye Women Traders’ recycling, conservation and women’s empowerment work, connecting supporters and development partners with community-led change in Kampala.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
